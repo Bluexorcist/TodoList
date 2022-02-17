@@ -3,7 +3,8 @@ import './App.css';
 import TodoList from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./components/AddItemForm";
-import {Paper} from "@material-ui/core";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
+import {Menu} from "@material-ui/icons";
 // C
 // R
 // U
@@ -40,19 +41,19 @@ const App = () => {
     ])
     const [tasks, setTasks] = useState<TaskStateType>({
         [todoListID_1]: [
-            {id: v1(), title: "HTML&CSS", isDone: true}, //"completed"
-            {id: v1(), title: "JS/ES6", isDone: true}, // "completed"
-            {id: v1(), title: "REACT", isDone: true}, // "completed"
+            {id: v1(), title: "HTML&CSS", isDone: false}, //"completed"
+            {id: v1(), title: "JS/ES6", isDone: false}, // "completed"
+            {id: v1(), title: "REACT", isDone: false}, // "completed"
         ],
         [todoListID_2]: [
-            {id: v1(), title: "The Catcher in the rye", isDone: true}, //"completed"
-            {id: v1(), title: "Angel & Demons", isDone: true}, // "completed"
-            {id: v1(), title: "Shawshank Redemption", isDone: true}, // "completed"
+            {id: v1(), title: "The Catcher in the rye", isDone: false}, //"completed"
+            {id: v1(), title: "Angel & Demons", isDone: false}, // "completed"
+            {id: v1(), title: "Shawshank Redemption", isDone: false}, // "completed"
         ],
         [todoListID_3]: [
-            {id: v1(), title: "Black Sea", isDone: true}, //"completed"
-            {id: v1(), title: "Kioto Japan", isDone: true}, // "completed"
-            {id: v1(), title: "Spain", isDone: true}, // "completed"
+            {id: v1(), title: "Black Sea", isDone: false}, //"completed"
+            {id: v1(), title: "Kioto Japan", isDone: false}, // "completed"
+            {id: v1(), title: "Spain", isDone: false}, // "completed"
         ],
     })
 
@@ -105,10 +106,10 @@ const App = () => {
     const todoListComponents = todoList.map(tl => {
         const tasksForRender = getTasksForRender(tl)
         return (
+            <Grid item  key={tl.id}>
             <Paper elevation={8}
-            style={{padding: "20px"}}>
+                   style={{padding: "30px"}}>
                 <TodoList
-                    key={tl.id}
                     id={tl.id}
                     title={tl.title}
                     tasks={tasksForRender}
@@ -122,6 +123,7 @@ const App = () => {
                     changeTitle={changeTitle}
                 />
             </Paper>
+            </Grid>
         )
     })
 
@@ -129,8 +131,27 @@ const App = () => {
     // UI:
     return (
         <div className="App">
-            <AddItemForm addItem={addTodoList}/>
-            {todoListComponents}
+            <AppBar position="static">
+                <Toolbar style={{justifyContent: 'space-between'}}>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h6">
+                        Todolists
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <Grid container
+                      style={{padding: "25px 0"}}
+                      justifyContent={'center'}>
+                    <AddItemForm addItem={addTodoList}/>
+                </Grid>
+                <Grid container spacing={6} justifyContent={'center'}>
+                    {todoListComponents}
+                </Grid>
+            </Container>
         </div>
     );
 }

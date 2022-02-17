@@ -1,8 +1,10 @@
 import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
 import Button from "./Button";
+import {IconButton, TextField} from "@material-ui/core";
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 
 type AddItemFormType = {
-    addItem: (title:string) => void
+    addItem: (title: string) => void
 }
 
 export const AddItemForm: FC<AddItemFormType> = (props) => {
@@ -16,7 +18,7 @@ export const AddItemForm: FC<AddItemFormType> = (props) => {
     const onKeyPressAddItem = (e: KeyboardEvent<HTMLInputElement>) => e.key === "Enter" && onClickAddItem()
     const onClickAddItem = () => {
         const trimmedTitle = title.trim()
-        if(trimmedTitle){
+        if (trimmedTitle) {
             props.addItem(trimmedTitle)
         } else {
             setError(true)
@@ -24,21 +26,20 @@ export const AddItemForm: FC<AddItemFormType> = (props) => {
         setTitle("")
     }
 
-
-    const errorMessageStyle = {color: "white", backgroundColor: "red"}
-    const errorMessage = error
-        ? <div style={errorMessageStyle}>Title is required!</div>
-        : null
     return (
         <div>
-            <input
+            <TextField
+                size={'small'}
                 value={title}
-                onChange={onChangeSetTitle} //input.value
+                onChange={onChangeSetTitle}
                 onKeyPress={onKeyPressAddItem}
-                className={error ? "error" : ""}
+                variant={'outlined'}
+                label={'Title'}
+                // color={error?'secondary': 'primary'}
+                error={error}
+                helperText={error && "Title is required!"}
             />
-            <Button title={'+'}  onClickHandler={onClickAddItem} active={true}/>
-            {errorMessage}
+            <IconButton color={'inherit'} size={'small'} onClick={onClickAddItem}><AddBoxOutlinedIcon/></IconButton>
         </div>
     );
 };

@@ -23,23 +23,25 @@ const ButtonBlock: FC<ButtonBlockType> = ({
             >active</Button>
             <Button color={filter === 'completed'?"secondary": "primary"} onClick={setFilterValue('completed')}
             >completed</Button>
-            {/*<Button*/}
-            {/*    active={filter === "all"}*/}
-            {/*    title={"Всё"}*/}
-            {/*    onClickHandler={setFilterValue('all')}*/}
-            {/*/>*/}
-            {/*<Button*/}
-            {/*    active={filter === "active"}*/}
-            {/*    title={"В работе"}*/}
-            {/*    onClickHandler={setFilterValue('active')}*/}
-            {/*/>*/}
-            {/*<Button*/}
-            {/*    active={filter === "completed"}*/}
-            {/*    title={"Выполнено"}*/}
-            {/*    onClickHandler={setFilterValue("completed")}*/}
-            {/*/>*/}
         </ButtonGroup>
     );
 };
 
 export default ButtonBlock;
+
+
+{/*<Button*/}
+{/*    active={filter === "all"}*/}
+{/*    title={"Всё"}*/}
+{/*    onClickHandler={setFilterValue('all')}*/}
+{/*/>*/}
+{/*<Button*/}
+{/*    active={filter === "active"}*/}
+{/*    title={"В работе"}*/}
+{/*    onClickHandler={setFilterValue('active')}*/}
+{/*/>*/}
+{/*<Button*/}
+{/*    active={filter === "completed"}*/}
+{/*    title={"Выполнено"}*/}
+{/*    onClickHandler={setFilterValue("completed")}*/}
+{/*/>*/}

@@ -9,14 +9,25 @@ type TodoListHeaderPropsType = {
     changeTitle: (newTitle: string) => void
 }
 
-const TodoListHeader: React.FC<TodoListHeaderPropsType> = ({title,
+const TodoListHeader: React.FC<TodoListHeaderPropsType> = ({
+                                                               title,
                                                                changeTitle,
-                                                               ...props}) => {
+                                                               ...props
+                                                           }) => {
     return (
-        <h3>
-            <EditableSpan title={title} changeTitle={changeTitle}/>
-            <IconButton size={'small'} color={'inherit'} onClick={props.removeTodoList}><DeleteForeverRoundedIcon/></IconButton>
-        </h3>
+        <div className={"title"}>
+            <h3>
+
+                <EditableSpan title={title} changeTitle={changeTitle}/>
+                <IconButton
+                    size={'small'}
+                    color={'inherit'}
+                    onClick={props.removeTodoList}
+                ><DeleteForeverRoundedIcon/>
+                </IconButton>
+
+            </h3>
+        </div>
 
     )
 };

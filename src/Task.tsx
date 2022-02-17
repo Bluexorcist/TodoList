@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {TaskType} from "./App";
 import {EditableSpan} from "./components/EditableSpan";
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
-import {Checkbox, IconButton} from "@material-ui/core";
+import {Checkbox, IconButton, List} from "@material-ui/core";
 
 type TaskPropsType = TaskType & {
     removeTask: (taskID: string) => void
@@ -24,7 +24,7 @@ const Task: React.FC<TaskPropsType> = (
     const onChangeChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(id, e.currentTarget.checked)
     const onChangeChangeTaskTitle = (title: string) => changeTaskTitle(id, title)
     return (
-        <li className={'ul'}>
+        <List>
             <span className={isDone ? "is-done" : ""}>
                 <Checkbox
                     size={'small'}
@@ -35,7 +35,7 @@ const Task: React.FC<TaskPropsType> = (
             </span>
             <IconButton size={'medium'} color={'secondary'}
                         onClick={onClickRemoveTask}><DeleteOutlineRoundedIcon/></IconButton>
-        </li>
+        </List>
     );
 };
 
