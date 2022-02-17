@@ -3,6 +3,7 @@ import './App.css';
 import TodoList from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./components/AddItemForm";
+import {Paper} from "@material-ui/core";
 // C
 // R
 // U
@@ -89,10 +90,10 @@ const App = () => {
         setTodoList(todoList.filter(tl => tl.id !== todoListID))
         delete tasks[todoListID]
     }
-    const addTodoList = (title:string) => {
+    const addTodoList = (title: string) => {
         const newTodoListID = v1()
-        const newTodoList:TodoListType = {
-            id: newTodoListID, title, filter:"all"
+        const newTodoList: TodoListType = {
+            id: newTodoListID, title, filter: "all"
         }
         setTodoList([...todoList, newTodoList])
         setTasks({...tasks, [newTodoListID]: []})
@@ -104,21 +105,23 @@ const App = () => {
     const todoListComponents = todoList.map(tl => {
         const tasksForRender = getTasksForRender(tl)
         return (
-
-            <TodoList
-                key={tl.id}
-                id={tl.id}
-                title={tl.title}
-                tasks={tasksForRender}
-                filter={tl.filter}
-                removeTask={removeTask}
-                changeFilter={changeFilter}
-                addTask={addTask}
-                changeTaskStatus={changeTaskStatus}
-                removeTodoList={removeTodoList}
-                changeTaskTitle={changeTaskTitle}
-                changeTitle={changeTitle}
-            />
+            <Paper elevation={8}
+            style={{padding: "20px"}}>
+                <TodoList
+                    key={tl.id}
+                    id={tl.id}
+                    title={tl.title}
+                    tasks={tasksForRender}
+                    filter={tl.filter}
+                    removeTask={removeTask}
+                    changeFilter={changeFilter}
+                    addTask={addTask}
+                    changeTaskStatus={changeTaskStatus}
+                    removeTodoList={removeTodoList}
+                    changeTaskTitle={changeTaskTitle}
+                    changeTitle={changeTitle}
+                />
+            </Paper>
         )
     })
 

@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {TaskType} from "./App";
 import {EditableSpan} from "./components/EditableSpan";
+import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
+import {Checkbox, IconButton} from "@material-ui/core";
 
 type TaskPropsType = TaskType & {
     removeTask: (taskID: string) => void
@@ -20,15 +22,19 @@ const Task: React.FC<TaskPropsType> = (
 ) => {
     const onClickRemoveTask = () => removeTask(id)
     const onChangeChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(id, e.currentTarget.checked)
-    const onChangeChangeTaskTitle = (title: string) => changeTaskTitle(id,title)
+    const onChangeChangeTaskTitle = (title: string) => changeTaskTitle(id, title)
     return (
-        <li className={isDone ? "is-done" : ""}>
-            <input
-                type="checkbox"
-                onChange={onChangeChangeTaskStatus}
-                checked={isDone}/>
+        <li className={'ul'}>
+            <span className={isDone ? "is-done" : ""}>
+                <Checkbox
+                    size={'small'}
+                    onChange={onChangeChangeTaskStatus}
+                    checked={isDone}
+                />
             <EditableSpan title={title} changeTitle={onChangeChangeTaskTitle}/>
-            <button onClick={onClickRemoveTask}>x</button>
+            </span>
+            <IconButton size={'medium'} color={'secondary'}
+                        onClick={onClickRemoveTask}><DeleteOutlineRoundedIcon/></IconButton>
         </li>
     );
 };

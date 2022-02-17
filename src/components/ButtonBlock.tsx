@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import Button from "./Button";
 import {FilterValuesType} from "../App";
+import {Button, ButtonGroup} from "@material-ui/core";
 
 type ButtonBlockType = {
     filter: FilterValuesType
@@ -12,23 +12,33 @@ const ButtonBlock: FC<ButtonBlockType> = ({
                                               setFilterValue
                                           }) => {
     return (
-        <div>
-            <Button
-                active={filter === "all"}
-                title={"Всё"}
-                onClickHandler={setFilterValue('all')}
-            />
-            <Button
-                active={filter === "active"}
-                title={"В работе"}
-                onClickHandler={setFilterValue('active')}
-            />
-            <Button
-                active={filter === "completed"}
-                title={"Выполнено"}
-                onClickHandler={setFilterValue("completed")}
-            />
-        </div>
+        <ButtonGroup
+            fullWidth
+            aria-label="small outlined button group"
+            size={"small"}
+            variant={"contained"}>
+            <Button color={filter === 'all'?"secondary": "primary"} onClick={setFilterValue('all')}
+            >all</Button>
+            <Button color={filter === 'active'?"secondary": "primary"} onClick={setFilterValue('active')}
+            >active</Button>
+            <Button color={filter === 'completed'?"secondary": "primary"} onClick={setFilterValue('completed')}
+            >completed</Button>
+            {/*<Button*/}
+            {/*    active={filter === "all"}*/}
+            {/*    title={"Всё"}*/}
+            {/*    onClickHandler={setFilterValue('all')}*/}
+            {/*/>*/}
+            {/*<Button*/}
+            {/*    active={filter === "active"}*/}
+            {/*    title={"В работе"}*/}
+            {/*    onClickHandler={setFilterValue('active')}*/}
+            {/*/>*/}
+            {/*<Button*/}
+            {/*    active={filter === "completed"}*/}
+            {/*    title={"Выполнено"}*/}
+            {/*    onClickHandler={setFilterValue("completed")}*/}
+            {/*/>*/}
+        </ButtonGroup>
     );
 };
 

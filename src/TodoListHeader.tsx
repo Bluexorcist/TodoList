@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from "./components/Button";
 import {EditableSpan} from "./components/EditableSpan";
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import {IconButton} from "@material-ui/core";
 
 type TodoListHeaderPropsType = {
     title: string
@@ -14,7 +15,7 @@ const TodoListHeader: React.FC<TodoListHeaderPropsType> = ({title,
     return (
         <h3>
             <EditableSpan title={title} changeTitle={changeTitle}/>
-            <Button active={false} title={"x"} onClickHandler={props.removeTodoList}/>
+            <IconButton size={'small'} color={'inherit'} onClick={props.removeTodoList}><DeleteForeverRoundedIcon/></IconButton>
         </h3>
 
     )

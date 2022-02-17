@@ -1,6 +1,9 @@
 .App {
   padding: 30px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+  gap: 10px;
 }
 
 .App > div {
@@ -16,4 +19,7 @@
   background-color: lightpink ;
   border: 2px solid red;
   outline: transparent;
+}
+.ul {
+  list-style-type: circle;
 }
